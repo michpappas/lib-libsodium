@@ -77,8 +77,8 @@ LIBCRYPTO_CXXFLAGS-y += $(LIBSODIUM_SUPPRESS_FLAGS)
 
 # Extracted from original build by running configure --minimal and removing the following:
 #
-# -DHAVE_SYS_RANDOM_H=1 -DHAVE_ALLOCA_H=1 -DHAVE_ALLOCA=1 -DHAVE_MMAP=1 -DHAVE_MLOCK=1 -DHAVE_MADVISE=1 -DHAVE_MPROTECT=1
-# -DHAVE_GETRANDOM=1 -DHAVE_GETENTROPY=1 -DHAVE_POSIX_MEMALIGN=1 -DHAVE_GETPID=1 -DHAVE_NANOSLEEP=1 -DHAVE_EXPLICIT_BZERO=1 
+# -DHAVE_ALLOCA_H=1 -DHAVE_ALLOCA=1 -DHAVE_MMAP=1 -DHAVE_MLOCK=1 -DHAVE_MADVISE=1 -DHAVE_MPROTECT=1
+# -DHAVE_GETENTROPY=1 -DHAVE_POSIX_MEMALIGN=1 -DHAVE_GETPID=1 -DHAVE_NANOSLEEP=1 -DHAVE_EXPLICIT_BZERO=1
 #
 LIBSODIUM_DEFINES += -DPACKAGE_NAME=\"libsodium\" \
                      -DPACKAGE_TARNAME=\"libsodium\" \
@@ -89,6 +89,7 @@ LIBSODIUM_DEFINES += -DPACKAGE_NAME=\"libsodium\" \
                      -DPACKAGE=\"libsodium\" \
                      -DVERSION=\"$(LIBSODIUM_VERSION)\" \
                      -DMINIMAL=1 \
+		     -D__linux__ \
                      -DSTDC_HEADERS=1 \
                      -DHAVE_SYS_TYPES_H=1 \
                      -DHAVE_SYS_STAT_H=1 \
@@ -98,6 +99,7 @@ LIBSODIUM_DEFINES += -DPACKAGE_NAME=\"libsodium\" \
                      -DHAVE_STRINGS_H=1 \
                      -DHAVE_INTTYPES_H=1 \
                      -DHAVE_STDINT_H=1 \
+		     -DHAVE_SYS_RANDOM_H=1 \
                      -DHAVE_UNISTD_H=1 -D__EXTENSIONS__=1 \
                      -D_ALL_SOURCE=1 \
                      -D_GNU_SOURCE=1 \
@@ -112,6 +114,7 @@ LIBSODIUM_DEFINES += -DPACKAGE_NAME=\"libsodium\" \
                      -DASM_HIDE_SYMBOL=.hidden \
                      -DHAVE_WEAK_SYMBOLS=1 \
                      -DHAVE_ATOMIC_OPS=1 \
+		     -DHAVE_GETRANDOM \
                      -DCONFIGURED=1
 
 ifeq ($(CONFIG_LIBPTHREAD_EMBEDDED),y)
